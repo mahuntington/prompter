@@ -1,5 +1,4 @@
 const socket = io.connect('/');
-socket.on('users connected', function (data) {
+socket.on('prompt sent', function (data) {
     console.log(data);
 });
-// socket.emit('my other event', { my: 'data' });
