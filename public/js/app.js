@@ -1,5 +1,5 @@
 const socket = io.connect('/');
-socket.on('news', function (data) {
+socket.on('users connected', function (data) {
     console.log(data);
-    socket.emit('my other event', { my: 'data' });
 });
+// socket.emit('my other event', { my: 'data' });
