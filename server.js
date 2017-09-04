@@ -1,11 +1,16 @@
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 3000 ;
+const PORT = process.env.PORT || 3000;
+const http = require('http').Server(app);
+const socketserver = require('socket.io')(http);
 
-app.get('/', (req, res)=>{
-    res.send("works");
-})
+app.use(express.static('public'));
 
-app.listen(PORT, ()=>{
-    console.log('listening');
+socketserver.on('connection', function (socket) {
+    socket.emit('news', { hello: 'world' });
+    socket.on('my other event', function (data) {
+        console.log(data);
+    });
 });
+
+http.listen(PORT);

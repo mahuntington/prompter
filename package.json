@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/mahuntington/prompter#readme",
   "dependencies": {
-    "express": "^4.15.4"
+    "express": "^4.15.4",
+    "socket.io": "^2.0.3"
   }
 }
