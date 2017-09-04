@@ -3,8 +3,6 @@
     <head>
         <meta charset="utf-8">
         <title></title>
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="/js/admin.js" charset="utf-8"></script>
     </head>
     <body>
         <h1>Admin Page</h1>
@@ -12,5 +10,11 @@
             <dt>Num Users</dt>
             <dd></dd>
         </dl>
+        <form>
+            <input type="text" placeholder="prompt" />
+            <input type="submit" value="Send Prompt" />
+        </form>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/js/admin.js" charset="utf-8"></script>
     </body>
 </html>
