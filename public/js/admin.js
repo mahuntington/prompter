@@ -16,8 +16,9 @@ socket.on('prompt completed', function (usernames) {
 });
 
 socket.on('prompt sent', function (prompt) {
+    document.querySelector('#current-prompt').innerHTML = prompt;
     if(prompt !== "Nothing Yet"){
-        document.querySelector('[type="text"]').value = prompt;
+        document.querySelector('[type="text"]').value = '';
     }
 });
 
