@@ -15,8 +15,9 @@ socketserver.on('connection', (socket)=>{
         connectedUsers--;
         socketserver.emit('users connected', connectedUsers);
     });
-    socket.on('prompt sent', (data)=>{
-        socketserver.emit('prompt sent', data);
+    socket.on('prompt sent', (prompt)=>{
+        currentComplete = 0;
+        socketserver.emit('prompt sent', prompt);
     });
     socket.on('prompt completed', ()=>{
         currentComplete++;
