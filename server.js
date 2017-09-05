@@ -12,11 +12,12 @@ socketserver.on('connection', (socket)=>{
     socketserver.emit('prompt sent', currentPrompt);
     socketserver.emit('username list', usernames);
     socketserver.emit('prompt completed', currentComplete);
-    
+
     socket.on('prompt sent', (prompt)=>{
         currentComplete = [];
         currentPrompt = prompt;
         socketserver.emit('prompt sent', currentPrompt);
+        socketserver.emit('prompt completed', currentComplete);
     });
     socket.on('prompt completed', (username)=>{
         currentComplete.push(username);
@@ -31,12 +32,14 @@ socketserver.on('connection', (socket)=>{
     socket.on('user joined', (username)=>{
         usernames.push(username);
         socketserver.emit('username list', usernames);
+        socketserver.emit('prompt completed', currentComplete);
     });
     socket.on('user dropped', (username)=>{
         usernames = usernames.filter((currentElement)=>{
             return currentElement !== username;
         });
         socketserver.emit('username list', usernames);
+        socketserver.emit('prompt completed', currentComplete);
     });
 });
 

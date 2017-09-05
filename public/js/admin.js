@@ -1,4 +1,5 @@
 let enteredPwd;
+let students;
 while(enteredPwd !== 'lemme in'){
     enteredPwd = prompt("Enter admin password");
 }
@@ -13,6 +14,19 @@ socket.on('prompt completed', function (usernames) {
         newLi.innerHTML = user;
         roster.appendChild(newLi);
     }
+
+    //uncompleted
+    const uncompleted = students.filter((student)=>{
+        return usernames.indexOf(student) < 0;
+    });
+    console.log(uncompleted);
+    const uncompletedUl = document.querySelector('#uncompleted-list ul');
+    uncompletedUl.innerHTML = "";
+    for(user of uncompleted){
+        const newLi = document.createElement('li');
+        newLi.innerHTML = user;
+        uncompletedUl.appendChild(newLi);
+    }
 });
 
 socket.on('prompt sent', function (prompt) {
@@ -23,6 +37,7 @@ socket.on('prompt sent', function (prompt) {
 });
 
 socket.on('username list', function (usernames) {
+    students = usernames;
     document.querySelector('#num-users').innerHTML = usernames.length;
     const roster = document.querySelector('#roster ul');
     roster.innerHTML = "";

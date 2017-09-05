@@ -3,7 +3,7 @@ const button = document.querySelector('button');
 
 let username;
 while(!username){
-    username = prompt("Enter a username for this session");
+    username = prompt("Enter your full name for this session");
     socket.emit('user joined', username);
 }
 
