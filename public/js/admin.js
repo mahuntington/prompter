@@ -1,3 +1,7 @@
+let enteredPwd;
+while(enteredPwd !== 'lemme in'){
+    enteredPwd = prompt("Enter admin password");
+}
 const socket = io.connect('/');
 socket.on('users connected', function (data) {
     document.querySelector('#num-users').innerHTML = data-1;
