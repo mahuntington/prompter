@@ -7,6 +7,8 @@ while(!username){
     socket.emit('user joined', username);
 }
 
+document.querySelector('h1').innerHTML = "Welcome, "+username;
+
 socket.on('prompt sent', function (prompt) {
     if(prompt !== document.querySelector('dd').innerHTML){
         button.removeAttribute("disabled");
