@@ -3,7 +3,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const http = require('http').Server(app);
 const socketserver = require('socket.io')(http);
-
+const usernames = [];
 app.use(express.static('public'));
 
 let connectedUsers = 0;
@@ -12,6 +12,7 @@ let currentPrompt = "Nothing Yet";
 socketserver.on('connection', (socket)=>{
     connectedUsers++;
     socketserver.emit('users connected', connectedUsers);
+    socketserver.emit('username list', usernames);
     socketserver.emit('prompt sent', currentPrompt);
     socket.on('disconnect', ()=>{
         connectedUsers--;
@@ -29,6 +30,10 @@ socketserver.on('connection', (socket)=>{
     socket.on('remove completed', ()=>{
         currentComplete--;
         socketserver.emit('prompt completed', currentComplete);
+    });
+    socket.on('user joined', (username)=>{
+        usernames.push(username);
+        socketserver.emit('username list', usernames);
     });
 });
 
