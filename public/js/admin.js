@@ -3,15 +3,13 @@ while(enteredPwd !== 'lemme in'){
     enteredPwd = prompt("Enter admin password");
 }
 const socket = io.connect('/');
-socket.on('users connected', function (data) {
-    document.querySelector('#num-users').innerHTML = data;
-});
 
 socket.on('prompt completed', function (data) {
     document.querySelector('#current-complete').innerHTML = data;
 });
 
 socket.on('username list', function (usernames) {
+    document.querySelector('#num-users').innerHTML = usernames.length;
     const roster = document.querySelector('ul');
     roster.innerHTML = "";
     for(user of usernames){

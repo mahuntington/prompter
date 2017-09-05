@@ -11,7 +11,6 @@ let currentPrompt = "Nothing Yet";
 socketserver.on('connection', (socket)=>{
     socketserver.emit('prompt sent', currentPrompt);
     socketserver.emit('username list', usernames);
-    socketserver.emit('users connected', usernames.length);
 
     socket.on('prompt sent', (prompt)=>{
         currentComplete = 0;
@@ -29,14 +28,12 @@ socketserver.on('connection', (socket)=>{
     socket.on('user joined', (username)=>{
         usernames.push(username);
         socketserver.emit('username list', usernames);
-        socketserver.emit('users connected', usernames.length);
     });
     socket.on('user dropped', (username)=>{
         usernames = usernames.filter((currentElement)=>{
             return currentElement !== username;
         });
         socketserver.emit('username list', usernames);
-        socketserver.emit('users connected', usernames.length);
     });
 });
 
