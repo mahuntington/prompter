@@ -6,4 +6,5 @@ socket.on('prompt sent', function (data) {
 });
 button.addEventListener('click', (event)=>{
     button.setAttribute("disabled",true);
+    socket.emit('prompt completed');
 });

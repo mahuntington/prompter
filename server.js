@@ -7,6 +7,7 @@ const socketserver = require('socket.io')(http);
 app.use(express.static('public'));
 
 let connectedUsers = 0;
+let currentComplete = 0;
 socketserver.on('connection', (socket)=>{
     connectedUsers++;
     socketserver.emit('users connected', connectedUsers);
@@ -16,7 +17,11 @@ socketserver.on('connection', (socket)=>{
     });
     socket.on('prompt sent', (data)=>{
         socketserver.emit('prompt sent', data);
-    })
+    });
+    socket.on('prompt completed', ()=>{
+        currentComplete++;
+        socketserver.emit('prompt completed', currentComplete);
+    });
 });
 
 http.listen(PORT);
