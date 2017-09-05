@@ -11,7 +11,8 @@ let currentPrompt = "Nothing Yet";
 socketserver.on('connection', (socket)=>{
     socketserver.emit('prompt sent', currentPrompt);
     socketserver.emit('username list', usernames);
-    socketserver.emit('users connected', usernames.length);    
+    socketserver.emit('users connected', usernames.length);
+
     socket.on('prompt sent', (prompt)=>{
         currentComplete = 0;
         currentPrompt = prompt;
