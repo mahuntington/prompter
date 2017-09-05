@@ -23,6 +23,10 @@ socketserver.on('connection', (socket)=>{
         currentComplete++;
         socketserver.emit('prompt completed', currentComplete);
     });
+    socket.on('remove completed', ()=>{
+        currentComplete--;
+        socketserver.emit('prompt completed', currentComplete);
+    });
 });
 
 http.listen(PORT);
