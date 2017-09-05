@@ -8,6 +8,12 @@ socket.on('prompt completed', function (data) {
     document.querySelector('#current-complete').innerHTML = data;
 });
 
+socket.on('prompt sent', function (prompt) {
+    if(prompt !== "Nothing Yet"){
+        document.querySelector('[type="text"]').value = prompt;
+    }
+});
+
 socket.on('username list', function (usernames) {
     document.querySelector('#num-users').innerHTML = usernames.length;
     const roster = document.querySelector('ul');

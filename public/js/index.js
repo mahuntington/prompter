@@ -11,7 +11,9 @@ document.querySelector('h1').innerHTML = "Welcome, "+username;
 
 socket.on('prompt sent', function (prompt) {
     if(prompt !== document.querySelector('dd').innerHTML){
-        button.removeAttribute("disabled");
+        if(prompt !== "Nothing Yet"){
+            button.removeAttribute("disabled");
+        }
         document.querySelector('dd').innerHTML = prompt;
     }
 });
