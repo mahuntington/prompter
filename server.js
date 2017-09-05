@@ -3,9 +3,9 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const http = require('http').Server(app);
 const socketserver = require('socket.io')(http);
-let usernames = [];
 app.use(express.static('public'));
 
+let usernames = [];
 let currentComplete = 0;
 let currentPrompt = "Nothing Yet";
 socketserver.on('connection', (socket)=>{
