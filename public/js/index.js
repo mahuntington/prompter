@@ -1,8 +1,10 @@
 const socket = io.connect('/');
-const button = document.querySelector('button')
-socket.on('prompt sent', function (data) {
-    button.removeAttribute("disabled");
-    document.querySelector('dd').innerHTML = data;
+const button = document.querySelector('button');
+socket.on('prompt sent', function (prompt) {
+    if(prompt !== document.querySelector('dd').innerHTML){
+        button.removeAttribute("disabled");
+        document.querySelector('dd').innerHTML = prompt;
+    }
 });
 button.addEventListener('click', (event)=>{
     button.setAttribute("disabled",true);

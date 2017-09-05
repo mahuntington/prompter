@@ -8,16 +8,19 @@ app.use(express.static('public'));
 
 let connectedUsers = 0;
 let currentComplete = 0;
+let currentPrompt = "Nothing Yet";
 socketserver.on('connection', (socket)=>{
     connectedUsers++;
     socketserver.emit('users connected', connectedUsers);
+    socketserver.emit('prompt sent', currentPrompt);
     socket.on('disconnect', ()=>{
         connectedUsers--;
         socketserver.emit('users connected', connectedUsers);
     });
     socket.on('prompt sent', (prompt)=>{
         currentComplete = 0;
-        socketserver.emit('prompt sent', prompt);
+        currentPrompt = prompt;
+        socketserver.emit('prompt sent', currentPrompt);
     });
     socket.on('prompt completed', ()=>{
         currentComplete++;
