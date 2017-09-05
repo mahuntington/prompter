@@ -4,7 +4,7 @@ while(enteredPwd !== 'lemme in'){
 }
 const socket = io.connect('/');
 socket.on('users connected', function (data) {
-    document.querySelector('#num-users').innerHTML = data-1;
+    document.querySelector('#num-users').innerHTML = data;
 });
 
 socket.on('prompt completed', function (data) {
