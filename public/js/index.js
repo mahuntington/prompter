@@ -20,12 +20,12 @@ socket.on('prompt sent', function (prompt) {
 
 button.addEventListener('click', (event)=>{
     button.setAttribute("disabled",true);
-    socket.emit('prompt completed');
+    socket.emit('prompt completed', username);
 });
 
 window.addEventListener("beforeunload", (e)=>{
     socket.emit('user dropped', username);
     if(button.getAttribute("disabled")){
-        socket.emit('remove completed');
+        socket.emit('remove completed', username);
     }
 });

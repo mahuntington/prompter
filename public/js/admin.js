@@ -4,8 +4,15 @@ while(enteredPwd !== 'lemme in'){
 }
 const socket = io.connect('/');
 
-socket.on('prompt completed', function (data) {
-    document.querySelector('#current-complete').innerHTML = data;
+socket.on('prompt completed', function (usernames) {
+    document.querySelector('#current-complete').innerHTML = usernames.length;
+    const roster = document.querySelector('#completed-list ul');
+    roster.innerHTML = "";
+    for(user of usernames){
+        const newLi = document.createElement('li');
+        newLi.innerHTML = user;
+        roster.appendChild(newLi);
+    }
 });
 
 socket.on('prompt sent', function (prompt) {
@@ -16,7 +23,7 @@ socket.on('prompt sent', function (prompt) {
 
 socket.on('username list', function (usernames) {
     document.querySelector('#num-users').innerHTML = usernames.length;
-    const roster = document.querySelector('ul');
+    const roster = document.querySelector('#roster ul');
     roster.innerHTML = "";
     for(user of usernames){
         const newLi = document.createElement('li');
