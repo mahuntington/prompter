@@ -48,6 +48,7 @@ socketserver.on('connection', (socket)=>{
         socketserver.emit('username list', usernames);
         socketserver.emit('prompt completed', currentComplete);
         socketserver.emit('prompt sent', currentPrompt);
+        socketserver.emit('disconnect students', currentPrompt);
     });
 });
 

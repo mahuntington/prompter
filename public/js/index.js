@@ -18,6 +18,12 @@ socket.on('prompt sent', function (prompt) {
     }
 });
 
+socket.on('disconnect students', function (prompt) {
+    document.querySelector('h1').innerHTML = "Thanks for attending this class!"
+    document.querySelector('main').innerHTML = "";
+    window.close();
+});
+
 button.addEventListener('click', (event)=>{
     button.setAttribute("disabled",true);
     socket.emit('prompt completed', username);
