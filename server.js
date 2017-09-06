@@ -41,6 +41,14 @@ socketserver.on('connection', (socket)=>{
         socketserver.emit('username list', usernames);
         socketserver.emit('prompt completed', currentComplete);
     });
+    socket.on('reset class', ()=>{
+        usernames = [];
+        currentComplete = [];
+        currentPrompt = "Nothing Yet";
+        socketserver.emit('username list', usernames);
+        socketserver.emit('prompt completed', currentComplete);
+        socketserver.emit('prompt sent', currentPrompt);
+    });
 });
 
 http.listen(PORT);

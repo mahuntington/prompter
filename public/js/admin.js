@@ -53,3 +53,8 @@ document.querySelector('form').addEventListener('submit', (event)=>{
     document.querySelector('#current-complete').innerHTML = 0;
     socket.emit('prompt sent', document.querySelector('[type="text"]').value);
 });
+
+document.querySelector('button').addEventListener('click', (event)=>{
+    event.preventDefault();
+    socket.emit('reset class');
+});
