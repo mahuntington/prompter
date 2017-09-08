@@ -13,6 +13,7 @@ socket.on('prompt sent', function (prompt) {
     if(prompt !== document.querySelector('dd').innerHTML){
         if(prompt !== "Nothing Yet"){
             button.removeAttribute("disabled");
+            button.classList.remove("invisible");
         }
         document.querySelector('dd').innerHTML = prompt;
     }
@@ -26,6 +27,7 @@ socket.on('disconnect students', function (prompt) {
 
 button.addEventListener('click', (event)=>{
     button.setAttribute("disabled",true);
+    button.classList.add("invisible");
     socket.emit('prompt completed', username);
 });
 
