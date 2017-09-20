@@ -25,6 +25,16 @@ socket.on('disconnect students', function (prompt) {
     window.close();
 });
 
+socket.on('get usernames', function (){
+    socket.emit('user joined', username);
+});
+
+socket.on('get completeds', function (){
+    if(button.getAttribute("disabled")){
+        socket.emit('prompt completed', username);
+    }
+});
+
 button.addEventListener('click', (event)=>{
     button.setAttribute("disabled",true);
     button.classList.add("invisible");

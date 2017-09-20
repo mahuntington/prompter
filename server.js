@@ -41,6 +41,12 @@ socketserver.on('connection', (socket)=>{
         socketserver.emit('username list', usernames);
         socketserver.emit('prompt completed', currentComplete);
     });
+    socket.on('refresh roster', ()=>{
+        usernames = [];
+        currentComplete = [];        
+        socketserver.emit('get usernames');
+        socketserver.emit('get completeds');
+    })
     socket.on('reset class', ()=>{
         usernames = [];
         currentComplete = [];

@@ -19,7 +19,6 @@ socket.on('prompt completed', function (usernames) {
     const uncompleted = students.filter((student)=>{
         return usernames.indexOf(student) < 0;
     });
-    console.log(uncompleted);
     const uncompletedUl = document.querySelector('#uncompleted-list ul');
     uncompletedUl.innerHTML = "";
     for(user of uncompleted){
@@ -54,7 +53,12 @@ document.querySelector('form').addEventListener('submit', (event)=>{
     socket.emit('prompt sent', document.querySelector('[type="text"]').value);
 });
 
-document.querySelector('button').addEventListener('click', (event)=>{
+document.querySelector('#reset').addEventListener('click', (event)=>{
     event.preventDefault();
     socket.emit('reset class');
+});
+
+document.querySelector('#refresh').addEventListener('click', (event)=>{
+    event.preventDefault();
+    socket.emit('refresh roster');
 });
